@@ -51,14 +51,13 @@ namespace Library_Console_App.Models
             }
             else
             {
-                Array.Sort(_books,(Book a,Book b) => a.BookId - b.BookId);
+                Array.Sort(_books,(a, b) => a.BookId - b.BookId);
                 Array.Resize(ref _books, _books.Length + 1);
                 _books[^1] = book;
                 _books[^1].BookId = 0;
 
                 if (CalculateId(_books) != 0)
                 {
-                    Console.WriteLine(CalculateId(_books));
                     book.BookId = CalculateId(_books);
                     _books[^1] = book;
                 }
@@ -67,7 +66,7 @@ namespace Library_Console_App.Models
                     book.BookId = _books[^1].BookId + 1;
                 }
                 
-                Array.Sort(_books,(Book a,Book b) => a.BookId - b.BookId);
+                Array.Sort(_books,(a, b) => a.BookId - b.BookId);
             }
         }
         
