@@ -64,6 +64,11 @@ namespace Library_Console_App.Models
             Array.Resize(ref _persons, _persons.Length + 1);
             _persons[^1] = person;
         }
+
+        public Person FindAuthorById(int id)
+        {
+            return id > _persons.Length ? null : _persons[id - 1];
+        }
         
         public void PrintAllAuthors()
         {
