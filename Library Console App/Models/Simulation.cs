@@ -12,11 +12,10 @@ namespace Library_Console_App.Models
             Console.WriteLine("\n*------------------------------------------------------------------------------------------------------------------------*\n");
 
             Console.WriteLine("Please create a new Library!");
-            Library.CreateLibrary(ReadLineStr("The Library name"),
-                ReadLineStr("Located City"));
+            Library.CreateLibrary(ReadLineStr("the library name"),
+                ReadLineStr("located city"));
             Console.WriteLine("\n✅ The library was created successfully.");
 
-            
             int inChoice; 
             do
             {
@@ -56,9 +55,9 @@ namespace Library_Console_App.Models
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("\n _______    ________   ___   _________   \n|\\  ___ \\  |\\   ___ \\ |\\  \\ |\\___   ___\\ \n\\ \\   __/| \\ \\  \\_|\\ \\\\ \\  \\\\|___ \\  \\_| \n \\ \\  \\_|/__\\ \\  \\ \\\\ \\\\ \\  \\    \\ \\  \\  \n  \\ \\  \\_|\\ \\\\ \\  \\_\\\\ \\\\ \\  \\    \\ \\  \\ \n   \\ \\_______\\\\ \\_______\\\\ \\__\\    \\ \\__\\\n    \\|_______| \\|_______| \\|__|     \\|__|");
-                        Console.WriteLine("\n*--------------------------------------------------------------*\n");
-
+                        Console.WriteLine("\n _______    ________   ___   _________        ________          ________   ________   ________   ___  __       \n|\\  ___ \\  |\\   ___ \\ |\\  \\ |\\___   ___\\     |\\   __  \\        |\\   __  \\ |\\   __  \\ |\\   __  \\ |\\  \\|\\  \\     \n\\ \\   __/| \\ \\  \\_|\\ \\\\ \\  \\\\|___ \\  \\_|     \\ \\  \\|\\  \\       \\ \\  \\|\\ /_\\ \\  \\|\\  \\\\ \\  \\|\\  \\\\ \\  \\/  /|_   \n \\ \\  \\_|/__\\ \\  \\ \\\\ \\\\ \\  \\    \\ \\  \\       \\ \\   __  \\       \\ \\   __  \\\\ \\  \\\\\\  \\\\ \\  \\\\\\  \\\\ \\   ___  \\  \n  \\ \\  \\_|\\ \\\\ \\  \\_\\\\ \\\\ \\  \\    \\ \\  \\       \\ \\  \\ \\  \\       \\ \\  \\|\\  \\\\ \\  \\\\\\  \\\\ \\  \\\\\\  \\\\ \\  \\\\ \\  \\ \n   \\ \\_______\\\\ \\_______\\\\ \\__\\    \\ \\__\\       \\ \\__\\ \\__\\       \\ \\_______\\\\ \\_______\\\\ \\_______\\\\ \\__\\\\ \\__\\");
+                        Console.WriteLine("\n*--------------------------------------------------------------------------------------------------------------------*\n");
+                        
                         var editABook = Library.FindABook(ReadLineInt("book id"));
                         if (editABook is null)
                         {
@@ -72,7 +71,7 @@ namespace Library_Console_App.Models
                                 case 1:
                                     Console.WriteLine();
                                     editABook.Name = ReadLineStr("book name");
-                                    Console.WriteLine("\n✅ The 'book name' was successfully changed");
+                                    Console.WriteLine("\n✅ The 'book name' was successfully changed\n");
                                     break;
                                 case 3:
                                     Console.Clear();
@@ -113,14 +112,17 @@ namespace Library_Console_App.Models
                                 case 2:
                                     Console.WriteLine();
                                     editABook.PublishYear = ReadLineInt("publish year");
-                                    Console.WriteLine("\n✅ The 'publish year' was successfully changed");
+                                    Console.WriteLine("\n✅ The 'publish year' was successfully changed\n");
                                     break;
                                 case 4:
                                     Console.Clear();
                                     Console.WriteLine("\n ________   ________   ________          ________   ___  ___   _________   ___  ___   ________   ________     \n|\\   __  \\ |\\   ___ \\ |\\   ___ \\        |\\   __  \\ |\\  \\|\\  \\ |\\___   ___\\|\\  \\|\\  \\ |\\   __  \\ |\\   __  \\    \n\\ \\  \\|\\  \\\\ \\  \\_|\\ \\\\ \\  \\_|\\ \\       \\ \\  \\|\\  \\\\ \\  \\\\\\  \\\\|___ \\  \\_|\\ \\  \\\\\\  \\\\ \\  \\|\\  \\\\ \\  \\|\\  \\   \n \\ \\   __  \\\\ \\  \\ \\\\ \\\\ \\  \\ \\\\ \\       \\ \\   __  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\   __  \\\\ \\  \\\\\\  \\\\ \\   _  _\\  \n  \\ \\  \\ \\  \\\\ \\  \\_\\\\ \\\\ \\  \\_\\\\ \\       \\ \\  \\ \\  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\\\ \\  \\\\  \\| \n   \\ \\__\\ \\__\\\\ \\_______\\\\ \\_______\\       \\ \\__\\ \\__\\\\ \\_______\\    \\ \\__\\  \\ \\__\\ \\__\\\\ \\_______\\\\ \\__\\\\ _\\ \n    \\|__|\\|__| \\|_______| \\|_______|        \\|__|\\|__| \\|_______|     \\|__|   \\|__|\\|__| \\|_______| \\|__|\\|__|");
                                     Console.WriteLine("\n*--------------------------------------------------------------*\n");
                                     editABook.AddNewAuthor(new Person(ReadLineStr("Author name"), ReadLineStr("Author surname"), ReadLineInt("Author age")));
-                                    Console.WriteLine("\n✅ A new author has been successfully added.");
+                                    Console.WriteLine("\n✅ A new author has been successfully added.\n");
+                                    break;
+                                default:
+                                    Console.WriteLine("\n❌  There is no such command!");
                                     break;
                             }
 
@@ -132,8 +134,31 @@ namespace Library_Console_App.Models
                     case 6:
                         Console.Clear();
                         Console.WriteLine("\n ___   ________    ________  ________     \n|\\  \\ |\\   ___  \\ |\\  _____\\|\\   __  \\    \n\\ \\  \\\\ \\  \\\\ \\  \\\\ \\  \\__/ \\ \\  \\|\\  \\   \n \\ \\  \\\\ \\  \\\\ \\  \\\\ \\   __\\ \\ \\  \\\\\\  \\  \n  \\ \\  \\\\ \\  \\\\ \\  \\\\ \\  \\_|  \\ \\  \\\\\\  \\ \n   \\ \\__\\\\ \\__\\\\ \\__\\\\ \\__\\    \\ \\_______\\\n    \\|__| \\|__| \\|__| \\|__|     \\|_______|");
-                        Console.WriteLine("\n*--------------------------------------------------------------*\n");
+                        Console.WriteLine("\n*---------------------------------------------*\n");
                         Console.WriteLine($"🏫 Library's name: '{Library.NameOfTheLibrary}'\n📍 Library's location: '{Library.LocatedCity}'\n📚 Book count: {Library.BookCount.ToString()} books");
+                        break;
+                    case 7: 
+                        Console.Clear();
+                        Console.WriteLine("\n _______    ________   ___   _________        _________   ___  ___   _______           ___        ___   ________   ________   ________   ________       ___    ___ \n|\\  ___ \\  |\\   ___ \\ |\\  \\ |\\___   ___\\     |\\___   ___\\|\\  \\|\\  \\ |\\  ___ \\         |\\  \\      |\\  \\ |\\   __  \\ |\\   __  \\ |\\   __  \\ |\\   __  \\     |\\  \\  /  /|\n\\ \\   __/| \\ \\  \\_|\\ \\\\ \\  \\\\|___ \\  \\_|     \\|___ \\  \\_|\\ \\  \\\\\\  \\\\ \\   __/|        \\ \\  \\     \\ \\  \\\\ \\  \\|\\ /_\\ \\  \\|\\  \\\\ \\  \\|\\  \\\\ \\  \\|\\  \\    \\ \\  \\/  / /\n \\ \\  \\_|/__\\ \\  \\ \\\\ \\\\ \\  \\    \\ \\  \\           \\ \\  \\  \\ \\   __  \\\\ \\  \\_|/__       \\ \\  \\     \\ \\  \\\\ \\   __  \\\\ \\   _  _\\\\ \\   __  \\\\ \\   _  _\\    \\ \\    / / \n  \\ \\  \\_|\\ \\\\ \\  \\_\\\\ \\\\ \\  \\    \\ \\  \\           \\ \\  \\  \\ \\  \\ \\  \\\\ \\  \\_|\\ \\       \\ \\  \\____ \\ \\  \\\\ \\  \\|\\  \\\\ \\  \\\\  \\|\\ \\  \\ \\  \\\\ \\  \\\\  \\|    \\/  /  /  \n   \\ \\_______\\\\ \\_______\\\\ \\__\\    \\ \\__\\           \\ \\__\\  \\ \\__\\ \\__\\\\ \\_______\\       \\ \\_______\\\\ \\__\\\\ \\_______\\\\ \\__\\\\ _\\ \\ \\__\\ \\__\\\\ \\__\\\\ _\\  __/  / /    \n    \\|_______| \\|_______| \\|__|     \\|__|            \\|__|   \\|__|\\|__| \\|_______|        \\|_______| \\|__| \\|_______| \\|__|\\|__| \\|__|\\|__| \\|__|\\|__||\\___/ /     \n                                                                                                                                                      \\|___|/");
+                        Console.WriteLine("\n*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*\n");
+                        Console.WriteLine("\n1) Edit name\n2) Edit located city\n");
+
+                        switch (ReadLineInt("choice"))
+                        {
+                            case 1:
+                                Console.WriteLine();
+                                Library.NameOfTheLibrary = ReadLineStr("the library name");
+                                Console.WriteLine("\n✅ The 'library's name' was successfully changed\n");
+                                break;
+                            case 2:
+                                Console.WriteLine();
+                                Library.LocatedCity = ReadLineStr("located city");
+                                Console.WriteLine("\n✅ The 'library's location' was successfully changed\n");
+                                break;
+                            default:
+                                Console.WriteLine("\n❌  There is no such command!");
+                                break;
+                        }
                         break;
                     case 8:
                         Console.Clear();
@@ -143,6 +168,15 @@ namespace Library_Console_App.Models
                         Console.WriteLine(Library.FindABook(bookId).GetAuthors(Library.FindABook(bookId).Authors));
                         break;
                     
+                    case 9:
+                        Console.Clear();
+                        Console.WriteLine("✅ Library has been successfully deleted\n");
+                        Console.WriteLine("The program was stopped");
+                        break;
+                    
+                    default: 
+                        Console.WriteLine("\n❌  There is no such command!");
+                        break;
                 }
                 
             } while (inChoice != 9);
@@ -165,7 +199,8 @@ namespace Library_Console_App.Models
                                       "5) Print all book\n" +
                                       "6) Library info\n" + 
                                       "7) Edit library\n" +
-                                      "8) Get the all authors for a specific book"
+                                      "8) Get the all authors for a specific book\n" +
+                                      "9) Delete library and stop program"
                     );
                     break;
             }
