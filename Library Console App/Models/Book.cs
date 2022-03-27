@@ -16,7 +16,7 @@ namespace Library_Console_App.Models
         public Person Author { get; set; }
         public Person[] Authors => _persons;
 
-        public int BookId { get; }
+        public int BookId { get; set; }
         public Person this[int index]
         {
             get => _persons [index];
@@ -58,6 +58,16 @@ namespace Library_Console_App.Models
             PublishYear = publishYear;
             AddNewAuthor(Author);
         }
+
+        public static void SetBookId(int id)
+        {
+            _bookId = id;
+        }
+
+        public static int GetBookId()
+        {
+            return _bookId;
+        }
         
         public void AddNewAuthor(Person person)
         {
@@ -70,16 +80,16 @@ namespace Library_Console_App.Models
             return id > _persons.Length ? null : _persons[id - 1];
         }
         
-        public void PrintAllAuthors()
-        {
-            Console.WriteLine(" \n ________   ___  ___   _________   ___  ___   ________   ________   ________      \n|\\   __  \\ |\\  \\|\\  \\ |\\___   ___\\|\\  \\|\\  \\ |\\   __  \\ |\\   __  \\ |\\   ____\\     \n\\ \\  \\|\\  \\\\ \\  \\\\\\  \\\\|___ \\  \\_|\\ \\  \\\\\\  \\\\ \\  \\|\\  \\\\ \\  \\|\\  \\\\ \\  \\___|_    \n \\ \\   __  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\   __  \\\\ \\  \\\\\\  \\\\ \\   _  _\\\\ \\_____  \\   \n  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\\\ \\  \\\\  \\|\\|____|\\  \\  \n   \\ \\__\\ \\__\\\\ \\_______\\    \\ \\__\\  \\ \\__\\ \\__\\\\ \\_______\\\\ \\__\\\\ _\\  ____\\_\\  \\ \n    \\|__|\\|__| \\|_______|     \\|__|   \\|__|\\|__| \\|_______| \\|__|\\|__||\\_________\\\n                                                                      \\|_________|");
-            Console.WriteLine();
-            foreach (var person in _persons)
-            {
-                Console.WriteLine($"\nAuthor Id: {person.PersonId.ToString()}\nFull name: {person.GetFullName()}\nAuthor's age: {person.Age.ToString()}\n");
-                Console.WriteLine("*--------------------------------*");
-            }
-        }
+        // public void PrintAllAuthors()
+        // {
+        //     Console.WriteLine(" \n ________   ___  ___   _________   ___  ___   ________   ________   ________      \n|\\   __  \\ |\\  \\|\\  \\ |\\___   ___\\|\\  \\|\\  \\ |\\   __  \\ |\\   __  \\ |\\   ____\\     \n\\ \\  \\|\\  \\\\ \\  \\\\\\  \\\\|___ \\  \\_|\\ \\  \\\\\\  \\\\ \\  \\|\\  \\\\ \\  \\|\\  \\\\ \\  \\___|_    \n \\ \\   __  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\   __  \\\\ \\  \\\\\\  \\\\ \\   _  _\\\\ \\_____  \\   \n  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\\\ \\  \\\\  \\|\\|____|\\  \\  \n   \\ \\__\\ \\__\\\\ \\_______\\    \\ \\__\\  \\ \\__\\ \\__\\\\ \\_______\\\\ \\__\\\\ _\\  ____\\_\\  \\ \n    \\|__|\\|__| \\|_______|     \\|__|   \\|__|\\|__| \\|_______| \\|__|\\|__||\\_________\\\n                                                                      \\|_________|");
+        //     Console.WriteLine();
+        //     foreach (var person in _persons)
+        //     {
+        //         Console.WriteLine($"\nAuthor Id: {person.PersonId.ToString()}\nFull name: {person.GetFullName()}\nAuthor's age: {person.Age.ToString()}\n");
+        //         Console.WriteLine("*--------------------------------*");
+        //     }
+        // }
 
         public void RemoveAuthorById(int id)
         {
@@ -102,7 +112,7 @@ namespace Library_Console_App.Models
 
         public string GetTheBook()
         {
-            return $"\nBook Id: {_bookId.ToString()}\nName: {Name}\nHead Author:{Author.GetFullName()}\nPublish Year: {_publishYear.ToString()}\n";
+            return $"\nBook Id: {_bookId.ToString()}\nName: {Name}\nHead Author: {Author.GetFullName()}\nPublish Year: {_publishYear.ToString()}\n";
         }
         
         public IEnumerator GetEnumerator()
