@@ -43,7 +43,7 @@ namespace Library_Console_App.Models
                         Console.WriteLine("\n*--------------------------------------------------------------*\n");
 
                         var book = Library.FindABook(ReadLineInt("book id"));
-                        Console.WriteLine(book is null ? "\n❌  No results found" : book.GetTheBook());
+                        Console.WriteLine(book is null ? "\n❌  No results found" : Book.GetTheBook());
 
                         break;
                     case 4:
@@ -70,19 +70,19 @@ namespace Library_Console_App.Models
                             {
                                 case 1:
                                     Console.WriteLine();
-                                    editABook.ChangeBookName(ReadLineStr("book name"));
+                                    Book.ChangeBookName(ReadLineStr("book name"));
                                     Console.WriteLine("\n✅ The 'book name' was successfully changed");
                                     break;
                                 case 2:
                                     Console.WriteLine();
-                                    editABook.PublishYear = ReadLineInt("publish year");
+                                    Book.PublishYear = ReadLineInt("publish year");
                                     Console.WriteLine("\n✅ The 'publish year' was successfully changed");
                                     break;
                                 case 4:
                                     Console.Clear();
                                     Console.WriteLine("\n ________   ________   ________     \n|\\   __  \\ |\\   ___ \\ |\\   ___ \\    \n\\ \\  \\|\\  \\\\ \\  \\_|\\ \\\\ \\  \\_|\\ \\   \n \\ \\   __  \\\\ \\  \\ \\\\ \\\\ \\  \\ \\\\ \\  \n  \\ \\  \\ \\  \\\\ \\  \\_\\\\ \\\\ \\  \\_\\\\ \\ \n   \\ \\__\\ \\__\\\\ \\_______\\\\ \\_______\\\n    \\|__|\\|__| \\|_______| \\|_______|");
                                     Console.WriteLine("\n*--------------------------------------------------------------*\n");
-                                    editABook.AddNewAuthor(new Person(ReadLineStr("Author name"), ReadLineStr("Author surname"), ReadLineInt("Author age")));
+                                    Book.AddNewAuthor(new Person(ReadLineStr("Author name"), ReadLineStr("Author surname"), ReadLineInt("Author age")));
                                     Console.WriteLine("\n✅ A new author has been successfully added.");
                                     break;
                             }
@@ -102,7 +102,7 @@ namespace Library_Console_App.Models
                         Console.WriteLine(" \n ________   ___  ___   _________   ___  ___   ________   ________   ________      \n|\\   __  \\ |\\  \\|\\  \\ |\\___   ___\\|\\  \\|\\  \\ |\\   __  \\ |\\   __  \\ |\\   ____\\     \n\\ \\  \\|\\  \\\\ \\  \\\\\\  \\\\|___ \\  \\_|\\ \\  \\\\\\  \\\\ \\  \\|\\  \\\\ \\  \\|\\  \\\\ \\  \\___|_    \n \\ \\   __  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\   __  \\\\ \\  \\\\\\  \\\\ \\   _  _\\\\ \\_____  \\   \n  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\\\ \\  \\\\  \\|\\|____|\\  \\  \n   \\ \\__\\ \\__\\\\ \\_______\\    \\ \\__\\  \\ \\__\\ \\__\\\\ \\_______\\\\ \\__\\\\ _\\  ____\\_\\  \\ \n    \\|__|\\|__| \\|_______|     \\|__|   \\|__|\\|__| \\|_______| \\|__|\\|__||\\_________\\\n                                                                      \\|_________|");
                         Console.WriteLine("\n*--------------------------------------------------------------*\n");
                         var bookId = ReadLineInt("book id");
-                        Console.WriteLine(Library.FindABook(bookId).GetAuthors(Book.Authors));
+                        Console.WriteLine(Book.GetAuthors(Book.Authors));
                         break;
                     
                 }

@@ -12,19 +12,18 @@ namespace Library_Console_App.Models
         private static Person[] _persons;
 
 
-        public static string Name { get; set; }
+        public static string Name { get; private set; }
 
-        public static Person Author { get; set; }
-
+        public static Person Author { get; private set; }
         public static Person[] Authors => _persons;
 
-        public int BookId { get; set; }
+        public int BookId { get; }
         public Person this[int index]
         {
             get => _persons [index];
             set => _persons [index] = value;
         }
-        public int PublishYear
+        public static int PublishYear
         {
             get => _publishYear;
             set
@@ -60,12 +59,12 @@ namespace Library_Console_App.Models
             AddNewAuthor(Author);
         }
 
-        public void ChangeBookName(string bookName)
+        public static void ChangeBookName(string bookName)
         {
             Name = bookName;
         }
         
-        public void AddNewAuthor(Person person)
+        public static void AddNewAuthor(Person person)
         {
             Array.Resize(ref _persons, _persons.Length + 1);
             _persons[^1] = person;
@@ -74,7 +73,7 @@ namespace Library_Console_App.Models
         public static void PrintAllAuthors()
         {
             Console.WriteLine(" \n ________   ___  ___   _________   ___  ___   ________   ________   ________      \n|\\   __  \\ |\\  \\|\\  \\ |\\___   ___\\|\\  \\|\\  \\ |\\   __  \\ |\\   __  \\ |\\   ____\\     \n\\ \\  \\|\\  \\\\ \\  \\\\\\  \\\\|___ \\  \\_|\\ \\  \\\\\\  \\\\ \\  \\|\\  \\\\ \\  \\|\\  \\\\ \\  \\___|_    \n \\ \\   __  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\   __  \\\\ \\  \\\\\\  \\\\ \\   _  _\\\\ \\_____  \\   \n  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\\\ \\  \\\\  \\|\\|____|\\  \\  \n   \\ \\__\\ \\__\\\\ \\_______\\    \\ \\__\\  \\ \\__\\ \\__\\\\ \\_______\\\\ \\__\\\\ _\\  ____\\_\\  \\ \n    \\|__|\\|__| \\|_______|     \\|__|   \\|__|\\|__| \\|_______| \\|__|\\|__||\\_________\\\n                                                                      \\|_________|");
-            Console.WriteLine("\n*--------------------------------------------------------------*\n");
+            Console.WriteLine();
             foreach (var person in _persons)
             {
                 Console.WriteLine($"\nAuthor Id: {person.PersonId.ToString()}\nFull name: {person.GetFullName()}\nAuthor's age: {person.Age.ToString()}\n");
@@ -87,18 +86,21 @@ namespace Library_Console_App.Models
             _persons = _persons.Where(person => person.PersonId != id).ToArray();
         }
 
-        public string GetAuthors(Person[] persons)
+        public static string GetAuthors(Person[] persons)
         {
+            if (persons == null)
+                throw new ArgumentNullException(nameof(persons));
+            
             var templateStr = new StringBuilder();
             foreach (var person in persons)
             {
                 templateStr.Append("\n" + person.GetFullName());
             }
-
+        
             return templateStr.ToString();
         }
 
-        public string GetTheBook()
+        public static string GetTheBook()
         {
             return $"\nBook Id: {_bookId.ToString()}\nName: {Name}\nHead Author:{Author.GetFullName()}\nPublish Year: {_publishYear.ToString()}\n";
         }
