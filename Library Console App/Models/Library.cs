@@ -32,10 +32,6 @@ namespace Library_Console_App.Models
         {
             Array.Resize(ref _books, _books.Length + 1);
             _books[^1] = book;
-            foreach (var book1 in _books)
-            {
-                Console.WriteLine(Book.PublishYear);
-            }
         }
         
         public static void RemoveBookById(int id)
@@ -68,7 +64,7 @@ namespace Library_Console_App.Models
             }
             foreach (var book in _books)
             {
-                Console.WriteLine($"\nBook Id: {book.BookId.ToString()}\nName: {Book.Name}\nHead author: {Book.Author.GetFullName()}\nPublish Year: {Book.PublishYear.ToString()}\n");
+                Console.WriteLine($"\nBook Id: {book.BookId.ToString()}\nName: {book.Name}\nHead author: {book.Author.GetFullName()}\nPublish Year: {book.PublishYear.ToString()}\n");
                 Console.WriteLine("*--------------------------------*");
             }
         }

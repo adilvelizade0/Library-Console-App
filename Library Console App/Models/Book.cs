@@ -8,14 +8,13 @@ namespace Library_Console_App.Models
     public class Book: IEnumerable
     {
         private static int _bookId;
-        private static int _publishYear;
-        private static Person[] _persons;
+        private int _publishYear;
+        private Person[] _persons;
 
 
-        public static string Name { get; private set; }
-
-        public static Person Author { get; private set; }
-        public static Person[] Authors => _persons;
+        public string Name { get; set; }
+        public Person Author { get; set; }
+        public Person[] Authors => _persons;
 
         public int BookId { get; }
         public Person this[int index]
@@ -23,7 +22,7 @@ namespace Library_Console_App.Models
             get => _persons [index];
             set => _persons [index] = value;
         }
-        public static int PublishYear
+        public int PublishYear
         {
             get => _publishYear;
             set
@@ -43,12 +42,13 @@ namespace Library_Console_App.Models
         static Book()
         {
             _bookId = 0;
-            _persons = Array.Empty<Person>();
+            
         }
 
         private Book()
         {
             BookId = ++_bookId;
+            _persons = Array.Empty<Person>();
         }
 
         public Book(string name, Person author, int publishYear):this()
@@ -58,19 +58,14 @@ namespace Library_Console_App.Models
             PublishYear = publishYear;
             AddNewAuthor(Author);
         }
-
-        public static void ChangeBookName(string bookName)
-        {
-            Name = bookName;
-        }
         
-        public static void AddNewAuthor(Person person)
+        public void AddNewAuthor(Person person)
         {
             Array.Resize(ref _persons, _persons.Length + 1);
             _persons[^1] = person;
         }
         
-        public static void PrintAllAuthors()
+        public void PrintAllAuthors()
         {
             Console.WriteLine(" \n ________   ___  ___   _________   ___  ___   ________   ________   ________      \n|\\   __  \\ |\\  \\|\\  \\ |\\___   ___\\|\\  \\|\\  \\ |\\   __  \\ |\\   __  \\ |\\   ____\\     \n\\ \\  \\|\\  \\\\ \\  \\\\\\  \\\\|___ \\  \\_|\\ \\  \\\\\\  \\\\ \\  \\|\\  \\\\ \\  \\|\\  \\\\ \\  \\___|_    \n \\ \\   __  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\   __  \\\\ \\  \\\\\\  \\\\ \\   _  _\\\\ \\_____  \\   \n  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\    \\ \\  \\  \\ \\  \\ \\  \\\\ \\  \\\\\\  \\\\ \\  \\\\  \\|\\|____|\\  \\  \n   \\ \\__\\ \\__\\\\ \\_______\\    \\ \\__\\  \\ \\__\\ \\__\\\\ \\_______\\\\ \\__\\\\ _\\  ____\\_\\  \\ \n    \\|__|\\|__| \\|_______|     \\|__|   \\|__|\\|__| \\|_______| \\|__|\\|__||\\_________\\\n                                                                      \\|_________|");
             Console.WriteLine();
@@ -81,26 +76,26 @@ namespace Library_Console_App.Models
             }
         }
 
-        public static void RemoveAuthorById(int id)
+        public void RemoveAuthorById(int id)
         {
             _persons = _persons.Where(person => person.PersonId != id).ToArray();
         }
 
-        public static string GetAuthors(Person[] persons)
+        public string GetAuthors(Person[] persons)
         {
             if (persons == null)
                 throw new ArgumentNullException(nameof(persons));
             
             var templateStr = new StringBuilder();
-            foreach (var person in persons)
+            for (var index = 0; index < persons.Length; index++)
             {
-                templateStr.Append("\n" + person.GetFullName());
+                var person = persons[index];
+                templateStr.Append($"{(index + 1).ToString()}) " + person.GetFullName() + "\n");
             }
-        
             return templateStr.ToString();
         }
 
-        public static string GetTheBook()
+        public string GetTheBook()
         {
             return $"\nBook Id: {_bookId.ToString()}\nName: {Name}\nHead Author:{Author.GetFullName()}\nPublish Year: {_publishYear.ToString()}\n";
         }
