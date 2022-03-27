@@ -109,6 +109,7 @@ namespace Library_Console_App.Models
                 Console.WriteLine($"\nBook Id: {book.BookId.ToString()}\nName: {book.Name}\nHead author: {book.Author.GetFullName()}\nPublish Year: {book.PublishYear.ToString()}\n");
                 Console.WriteLine("*--------------------------------*");
             }
+            
         }
         
         
@@ -116,6 +117,7 @@ namespace Library_Console_App.Models
         {
             return _books.GetEnumerator();
         }
+        
         
     }
 }
