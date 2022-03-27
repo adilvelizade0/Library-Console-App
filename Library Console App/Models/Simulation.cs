@@ -104,7 +104,7 @@ namespace Library_Console_App.Models
                                                 break;
                                             default:
                                                 Console.WriteLine();
-                                                Console.WriteLine("\n⚠️  There is no such command!");
+                                                Console.WriteLine("\n❌  There is no such command!");
                                                 break;
                                         }
                                     }
