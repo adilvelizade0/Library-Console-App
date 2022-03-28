@@ -27,47 +27,11 @@ namespace Library_Console_App.Models
             NameOfTheLibrary = nameOfTheLibrary;
             LocatedCity = locatedCity;
         }
-
-        private static int CalculateId(Book[] books)
-        {
-            var sumOfId1 = 0;
-
-            for (var i = 1; i <= books.Length; i++)
-            {
-                sumOfId1 += i;
-            }
-
-            var sumOfId2 = books.Sum(book => book.BookId);
-
-            return sumOfId1 - sumOfId2 == 0 ? 0 : sumOfId1 - sumOfId2;
-        }
-
+        
         public static void AddNewBook(Book book)
         {
-            if (_books.Length == 0)
-            {
-                Array.Resize(ref _books, _books.Length + 1);
+            Array.Resize(ref _books, _books.Length + 1);
                 _books[^1] = book;
-            }
-            else
-            {
-                Array.Sort(_books,(a, b) => a.BookId - b.BookId);
-                Array.Resize(ref _books, _books.Length + 1);
-                _books[^1] = book;
-                _books[^1].BookId = 0;
-
-                if (CalculateId(_books) != 0)
-                {
-                    book.BookId = CalculateId(_books);
-                    _books[^1] = book;
-                }
-                else
-                {
-                    book.BookId = _books[^1].BookId + 1;
-                }
-                
-                Array.Sort(_books,(a, b) => a.BookId - b.BookId);
-            }
         }
         
         public static void RemoveBookById(int id)
@@ -87,7 +51,6 @@ namespace Library_Console_App.Models
                 _books = _books.Where(book => book.BookId != id).ToArray();
                 Console.WriteLine("\n✅ The book was successfully deleted!");
             }
-           
         }
 
         public static Book FindABook(int id)

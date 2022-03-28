@@ -17,7 +17,7 @@ namespace Library_Console_App.Models
             Console.WriteLine("\n✅ The library was created successfully.");
 
             int inChoice; 
-            do
+            do 
             {
                 Console.WriteLine();
                 inChoice = ReadLineInt("choice (Enter '0' to display the menu)");
